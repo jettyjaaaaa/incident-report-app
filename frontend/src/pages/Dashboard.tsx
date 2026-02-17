@@ -23,24 +23,13 @@ import {
 
 import type { Incident } from "../types/incident";
 
+type SortMode = "created_at" | "updated_at" | "safety_first" | "maintenance_first";
+
 const STATUS_LANES: Array<{ id: Incident["status"]; title: string }> = [
   { id: "open", title: "Open" },
   { id: "in_progress", title: "In Progress" },
   { id: "success", title: "Success" },
 ];
-
-function laneHeaderClass(v: Incident["status"]) {
-  switch (v) {
-    case "open":
-      return "bg-amber-50";
-    case "in_progress":
-      return "bg-sky-50";
-    case "success":
-      return "bg-emerald-50";
-    default:
-      return "bg-gray-50";
-  }
-}
 
 function sortIncidents(list: Incident[], sortMode: string) {
   const items = [...list];
@@ -71,8 +60,8 @@ function sortIncidents(list: Incident[], sortMode: string) {
 export default function Dashboard() {
   const [list, setList] = useState<Incident[]>([]);
   const [q, setQ] = useState("");
-  const [sortMode, setSortMode] = useState("created_at");
-  const [categoryFilter, setCategoryFilter] = useState("");
+  const [sortMode, setSortMode] = useState<SortMode>("created_at");
+  const [categoryFilter, setCategoryFilter] = useState<"" | Incident["category"]>("");
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [openModal, setOpenModal] = useState(false);
@@ -118,8 +107,8 @@ export default function Dashboard() {
   }, [q, sortMode]);
 
   const filtered = useMemo(() => {
-    const items = Array.isArray(list) ? list : [];
-    const nextCategory = categoryFilter as Incident["category"];
+    const items = list;
+    const nextCategory = categoryFilter;
 
     const dateField: "created_at" | "updated_at" =
       sortMode === "updated_at" ? "updated_at" : "created_at";
@@ -221,7 +210,9 @@ export default function Dashboard() {
           <div className="text-xs text-gray-500 mb-1">Category</div>
           <select
             value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}
+            onChange={(e) =>
+              setCategoryFilter(e.target.value as "" | Incident["category"])
+            }
             className="border rounded-lg px-3 py-2 w-full"
           >
             <option value="">All</option>
