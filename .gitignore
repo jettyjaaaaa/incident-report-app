@@ -1,0 +1,52 @@
+# ------------------------
+# ENV / SECRET
+# ------------------------
+.env
+.env.local
+.env.*.local
+
+# Supabase
+.supabase
+
+# ------------------------
+# Node / Frontend
+# ------------------------
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.env
+
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Vercel
+.vercel
+
+# ------------------------
+# Go / Backend
+# ------------------------
+backend/bin/
+backend/build/
+backend/tmp/
+backend/.air/
+backend/vendor/
+backend/.env
+
+*.exe
+*.out
+
+# macOS
+.DS_Store
+
+# logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# coverage
+coverage/
+*.coverprofile
