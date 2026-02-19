@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Navbar() {
   return (
     <div className="bg-white/80 backdrop-blur border-b">
@@ -6,12 +8,12 @@ export default function Navbar() {
           <span className="text-slate-900">Incident</span>{" "}
           <span className="text-sky-700">Report</span>
         </h1>
-        <a
-          href="/deleted"
+        <Link
+          to="/deleted"
           className="text-sm text-gray-700 hover:text-black px-3 py-2 rounded-lg hover:bg-gray-50"
         >
           Deleted History
-        </a>
+        </Link>
       </div>
     </div>
   );

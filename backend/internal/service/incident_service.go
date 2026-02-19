@@ -39,7 +39,6 @@ func (s *IncidentService) Update(ctx context.Context, inc *model.Incident) (*mod
 }
 
 func (s *IncidentService) Delete(ctx context.Context, id, user string) error {
-	// ถ้าไม่ส่ง user มา ก็ยังให้ลบได้ (ตามที่คุณบอกว่าไม่ต้องมี auth)
 	if strings.TrimSpace(user) == "" {
 		user = "unknown"
 	}
