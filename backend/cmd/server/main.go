@@ -41,7 +41,7 @@ func main() {
 	incidentHandler.Register(r)
 
 	port := cfg.Port
-	log.Println("✅ API listening on :" + port)
+	log.Println("API listening on :" + port)
 	if err := r.Run(":" + port); err != nil {
 		log.Fatal(err)
 	}
